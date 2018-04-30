@@ -77,14 +77,6 @@ public class Brick{
 		score -= 1;
 	}
 
-	/**
-	*This method is used for moving the Balls.
-	*
-	*/
-	public void move()
-	{
-		xPosition += xSpeed;
-		yPosition += ySpeed;
-	}
+
 
 }

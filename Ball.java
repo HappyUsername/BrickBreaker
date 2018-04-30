@@ -8,8 +8,8 @@ public class Ball{
 	
 	private double xPosition;
 	private double yPosition;
-	private double diam;// static??
-	private String colour;//static??
+	private static double size;// static??
+	private static String colour;//static??
 	
 	private double xSpeed; //used for moving the ball on the X cordinate 
 	private double ySpeed; //used for moving the ball on the y cordinate 
@@ -33,8 +33,8 @@ public class Ball{
 	 * Returns current diameter of this Ball.
 	 * @return diam coordinate of this Ball within the GameArena
 	 */
-	public double getDiam(){
-		return diam;
+	public double getSize(){
+		return size;
 	}
 
 	/**
@@ -85,7 +85,9 @@ public class Ball{
 		yPosition = y;
 		xSpeed = 0;
 		ySpeed = 0;
-		//maybe diameter??
+		
+		size = 5;
+		colour = "#0000FF";
 
 	}
 
@@ -93,10 +95,32 @@ public class Ball{
 	*This method is used for moving the Balls.
 	*
 	*/
-	public void move()
-	{
+	public void move(){
 		xPosition += xSpeed;
 		yPosition += ySpeed;
 	}
+	
+	public void bounce(double maxX, double maxY){
+		move();
+
+		if (xPosition > maxX || xPosition < 0)
+		{
+				xSpeed = -xSpeed;
+			    xPosition += xSpeed;
+		}
+
+		if (yPosition > maxY || yPosition < 0)
+		{
+				ySpeed = -ySpeed;
+			    yPosition += ySpeed;
+		 
+		}
+		
+	}
+
+		/*public void mouseClicked(MouseEvent e) {
+				System.out.println("bbla");		
+		}*/
+
 
 }
