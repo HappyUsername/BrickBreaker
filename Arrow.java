@@ -1,10 +1,12 @@
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  * Models a simple arrow. 
  * This class represents a Arrow object. When combined with the GameArena class,
  * instances of the Arrow class can be displayed on the screen.
  */
-public class Arrow 
-{
+public class Arrow{
     // The following instance variables define the information needed to represent a Arrow
     // Feel free to more instance variables if you think it will support your work... 
    
@@ -213,7 +215,12 @@ public class Arrow
         line[2].setEnd(xe, ye);
 
     }
+	// adding mouse listener so it can move
+	// here??
+	void move(GameArena g){
+	
 
+	}
 
 
 }

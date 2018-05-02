@@ -14,6 +14,8 @@ public class Ball{
 	private double xSpeed; //used for moving the ball on the X cordinate 
 	private double ySpeed; //used for moving the ball on the y cordinate 
 
+	private boolean deleteAble = false; // if thi is set to true, the ball shoud be deleted by GameArena
+
 	/**
 	 * Returns current position of this Ball.
 	 * @return X coordinate of this Ball within the GameArena
@@ -76,7 +78,20 @@ public class Ball{
 	{
 		ySpeed = speed;
 	}
+	/**
+	* When the ball goes out of the game
+	* this method marks it as flaged
+	* so it can be deleted by GameArena
+	*/
+	/*public boolean flagDelete(){//doesnt work
+		if(yPosition > 500)
+		return true;
+		else return false;
+	}*/
 
+	public boolean getDeleteAble(){
+		return deleteAble;
+	}
 
 /* ------------------------------------------------ */
 
@@ -103,17 +118,27 @@ public class Ball{
 	public void bounce(double maxX, double maxY){
 		move();
 
-		if (xPosition > maxX || xPosition < 0)
-		{
-				xSpeed = -xSpeed;
-			    xPosition += xSpeed;
+		if (xPosition > maxX || xPosition < 0){
+			xSpeed = -xSpeed;
+			xPosition += xSpeed;
 		}
 
-		if (yPosition > maxY || yPosition < 0)
-		{
-				ySpeed = -ySpeed;
+		/*if (yPosition > maxY || yPosition < 0){
+			    ySpeed = -ySpeed;
 			    yPosition += ySpeed;
 		 
+		}*/
+		if (yPosition < 0){
+			ySpeed = -ySpeed;
+			yPosition += ySpeed;
+		 
+		}
+
+		if(yPosition > maxY){
+			System.out.println(yPosition +" "+maxY);	
+			deleteAble = true;
+			System.out.println("Disappear");
+			
 		}
 		
 	}
