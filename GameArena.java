@@ -16,6 +16,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 
 import java.awt.event.WindowEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * This class provides a simple window in which grahical objects can be drawn. 
@@ -28,7 +30,7 @@ import java.awt.event.WindowEvent;
  *
  * @author Joe Finney
  */
-public class GameArena 
+public class GameArena
 {
 	// Size of window
 	private int arenaWidth;
@@ -63,6 +65,9 @@ public class GameArena
     private ReentrantLock renderLock;
     private boolean initialised;
     private boolean rendered;
+
+    private double PressedCodinateX;
+    
 
 	/**
      * Constructor. Creates an instance of the GameArena class, and displays a window on the
@@ -108,6 +113,8 @@ public class GameArena
             window.setResizable(false);
             window.pack();
             window.setVisible(true);
+	    //jfxPanel.addMouseListener(this);
+	    //addMouseListener(this);
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
 
@@ -628,4 +635,23 @@ public class GameArena
     {
         return jfxPanel;
     }
+
+//----------------------------//
+
+  /* public void mousePressed(MouseEvent e) {}
+
+    public void mouseReleased(MouseEvent e) {}
+               public void mouseEntered(MouseEvent e){}
+                public void mouseExited(MouseEvent e){}
+		public void mouseMoved(MouseEvent e){		mouseCordinateX = (double)e.getX();
+		mouseCordinateY = (double)e.getY();
+	System.out.println("Mouse moving");}
+		public void mouseDragged(MouseEvent e){	
+}
+    public void mouseClicked(MouseEvent e) {	System.out.println("bla bla asdas");}
+	public void moveArrow(Arrow a){
+	System.out.println("Arrow thingy");
+		a.setEnd(mouseCordinateX,mouseCordinateY);
+	}*/
+
 }

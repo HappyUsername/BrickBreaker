@@ -135,9 +135,9 @@ public class Ball{
 		}
 
 		if(yPosition > maxY){
-			System.out.println(yPosition +" "+maxY);	
+			//System.out.println(yPosition +" "+maxY);	
 			deleteAble = true;
-			System.out.println("Disappear");
+			//System.out.println("Disappear");
 			
 		}
 		

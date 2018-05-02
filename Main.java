@@ -1,13 +1,14 @@
 import java.util.concurrent.TimeUnit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.*;
 
 public class Main{
 	public static void main(String args[])  throws InterruptedException {
 		GameArena g = new GameArena(500,500);
 		Ball[] balls = new Ball[15];
 		Arrow arr = new Arrow(250,500, 250, 450, 5,"#00FF00",g);
-		g.addMouseListener(this);
+		///g.addMouseListener(this);
 		double a = 2;
 		double b = 3;
 		for(int i = 0; i<balls.length;i++){
@@ -29,8 +30,8 @@ public class Main{
 		//g.addBall(b);
 
 		while(true)
-		{
-			
+		{	Point point = MouseInfo.getPointerInfo().getLocation();
+			arr.setEnd(point.getX(), point.getY());
             		for(int i = 0; i<balls.length;i++){
 
 				balls[i].bounce(500,500);
