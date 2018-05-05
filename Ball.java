@@ -13,7 +13,7 @@ public class Ball{
 	
 	private double xSpeed; //used for moving the ball on the X cordinate 
 	private double ySpeed; //used for moving the ball on the y cordinate 
-
+	private int itterations = 0;// dont forget me!
 	private boolean deleteAble = false; // if thi is set to true, the ball shoud be deleted by GameArena
 
 	/**
@@ -111,11 +111,13 @@ public class Ball{
 	*
 	*/
 	public void move(){
+
 		xPosition += xSpeed;
 		yPosition += ySpeed;
 	}
 	
 	public void bounce(double maxX, double maxY){
+		
 		move();
 
 		if (xPosition > maxX || xPosition < 0){
@@ -123,24 +125,26 @@ public class Ball{
 			xPosition += xSpeed;
 		}
 
-		/*if (yPosition > maxY || yPosition < 0){
+		//if ( (yPosition > maxY || yPosition < 0) && itterations == 0){
+		if (itterations == 0 ){
 			    ySpeed = -ySpeed;
 			    yPosition += ySpeed;
 		 
-		}*/
+		}
 		if (yPosition < 0){
 			ySpeed = -ySpeed;
 			yPosition += ySpeed;
 		 
 		}
 
-		if(yPosition > maxY){
-			//System.out.println(yPosition +" "+maxY);	
+		if(yPosition > maxY  && itterations>1){
+			System.out.println(yPosition +" "+maxY);	
 			deleteAble = true;
 			//System.out.println("Disappear");
 			
 		}
-		
+//System.out.println(itterations +" :itterations");
+		itterations++;
 	}
 
 		/*public void mouseClicked(MouseEvent e) {

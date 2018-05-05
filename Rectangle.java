@@ -12,7 +12,10 @@ public class Rectangle
     private double yPosition;            // The Y coordinate of this Rectangle
     private double width;                // The width of this Rectangle
     private double height;               // The height of this Rectangle
-    private String colour;               // The colour of this Rectangle
+    private static String colour;               // The colour of this Rectangle
+  //  private boolean forDelete = false; 
+    private int score;
+
 
     /**
      * Obtains the current position of this Rectangle.
@@ -60,6 +63,15 @@ public class Rectangle
     }
 
     /**
+     * Obtains the current score of this Rectangle.
+     * @return the score of this Rectangle within the GameArena.
+     */
+    public int getScore()
+    {
+        return score;
+    }
+
+    /**
      * Changes the width of this Rectangle to the given value
      * @param w the new width of this rectangle, in pixels.
      */
@@ -96,6 +108,15 @@ public class Rectangle
     }
 
     /**
+     * Changes the score of this Rectangle to the given value
+     * @param s the new score of this rectangle.
+     */
+    public void setScore(int s)
+    {
+        score = s;
+    }
+
+    /**
      * Changes the colour of this Rectangle to the given value.
      * 
      * @param c The new colour of this Rectangle. 
@@ -122,6 +143,25 @@ public class Rectangle
     {
         colour = c;
     }
+    /**
+    *Changes the value of the score of the current Rectangle by -1.
+    * Used for when the ball hits the rectangle. 
+    */
+    public void scoreMinus(){
+	score--;
+    }
+
+    /**
+    *If the score is less than 0 returns true, else false
+    * Used flagging the current rectangle so it can be deleted by GameArena.
+    */
+    public boolean forDelete(){
+	if(score == 0){
+	return true;
+	}
+	else return false;
+    }
+
 
     /**
      *
@@ -134,12 +174,13 @@ public class Rectangle
      * @param col. The colour of the Ball. @see setColour for a description of permissable colours.
      *
      */
-    public Rectangle(double x, double y, double w, double h, String col)
+    public Rectangle(double x, double y, double w, double h, int s)
     {
         xPosition = x;
         yPosition = y;
         width = w;
         height = h;
-        colour = col;
+	score = s;
+        colour = "#C0C0C0";
     }    
 }
