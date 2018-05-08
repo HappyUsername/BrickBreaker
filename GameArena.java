@@ -30,7 +30,7 @@ import java.awt.event.MouseListener;
  *
  * @author Joe Finney
  */
-public class GameArena
+public class GameArena implements MouseListener
 {
 	// Size of window
 	private int arenaWidth;
@@ -67,6 +67,10 @@ public class GameArena
     private boolean rendered;
 
     private double PressedCodinateX;
+    /* ----------------------------------*/
+    public double mouseCordinateX = 0;
+	public double mouseCordinateY = 0;
+	public boolean MousePressedd = false;
     
 
 	/**
@@ -113,7 +117,7 @@ public class GameArena
             window.setResizable(false);
             window.pack();
             window.setVisible(true);
-	    //jfxPanel.addMouseListener(this);
+			jfxPanel.addMouseListener(this);
 	    //addMouseListener(this);
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
@@ -626,6 +630,15 @@ public class GameArena
 	{
 		return space;
 	}
+	/**
+	 * Pause for a 1/50 of a second. 
+	 * This method causes your program to delay for 1/50th of a second. You'll find this useful if you're trying to animate your application.
+	 */
+	public void pause()
+	{
+		try { Thread.sleep(18); }
+		catch (Exception e) {};
+	}
 
     /** 
      * Acquires the JPanel containing this GameArena.
@@ -638,20 +651,17 @@ public class GameArena
 
 //----------------------------//
 
-  /* public void mousePressed(MouseEvent e) {}
-
+		public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
-               public void mouseEntered(MouseEvent e){}
-                public void mouseExited(MouseEvent e){}
-		public void mouseMoved(MouseEvent e){		mouseCordinateX = (double)e.getX();
+    public void mouseEntered(MouseEvent e){}
+    public void mouseExited(MouseEvent e){}
+	//public void mouseMoved(MouseEvent e){}
+	//public void mouseDragged(MouseEvent e){}
+    public void mouseClicked(MouseEvent e) {	
+		mouseCordinateX = (double)e.getX();
 		mouseCordinateY = (double)e.getY();
-	System.out.println("Mouse moving");}
-		public void mouseDragged(MouseEvent e){	
-}
-    public void mouseClicked(MouseEvent e) {	System.out.println("bla bla asdas");}
-	public void moveArrow(Arrow a){
-	System.out.println("Arrow thingy");
-		a.setEnd(mouseCordinateX,mouseCordinateY);
-	}*/
+		System.out.println("Mouse Pressed! Go!");
+		MousePressedd = true;
+	}
 
 }

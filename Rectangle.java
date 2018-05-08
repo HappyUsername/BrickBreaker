@@ -13,8 +13,8 @@ public class Rectangle
     private double width;                // The width of this Rectangle
     private double height;               // The height of this Rectangle
     private static String colour;               // The colour of this Rectangle
-  //  private boolean forDelete = false; 
-    private int score;
+    private boolean forDelete = false; 
+    private int score; // the score of the brick
 
 
     /**
@@ -148,7 +148,10 @@ public class Rectangle
     * Used for when the ball hits the rectangle. 
     */
     public void scoreMinus(){
-	score--;
+		score--;
+		if (score == 0){
+			forDelete = true;
+		}
     }
 
     /**
