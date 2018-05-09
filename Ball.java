@@ -88,6 +88,21 @@ public class Ball{
 		return true;
 		else return false;
 	}*/
+	
+	/**
+	 * Returns current x speed of this Ball.
+	 * @return xspeed coordinate of this Ball within the GameArena
+	 */
+	public double getXspeed(){
+		return xSpeed;
+	}
+	/**
+	 * Returns current x speed of this Ball.
+	 * @return xspeed coordinate of this Ball within the GameArena
+	 */
+	public double getYspeed(){
+		return ySpeed;
+	}
 
 	public boolean getDeleteAble(){
 		return deleteAble;
@@ -137,19 +152,13 @@ public class Ball{
 		 
 		}
 
-		if(yPosition > maxY  && itterations>1){
+		if(yPosition > maxY  && itterations>15){
 			System.out.println(yPosition +" "+maxY);	
 			deleteAble = true;
-			//System.out.println("Disappear");
 			
 		}
-//System.out.println(itterations +" :itterations");
 		itterations++;
 	}
-
-		/*public void mouseClicked(MouseEvent e) {
-				System.out.println("bbla");		
-		}*/
 
 
 }

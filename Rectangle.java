@@ -183,7 +183,16 @@ public class Rectangle
         yPosition = y;
         width = w;
         height = h;
-	score = s;
+		score = s;
         colour = "#C0C0C0";
     }    
+    
+    public void bounceRect(Ball bl){
+		if( (bl.getXPosition() < (xPosition +height)) && //+height
+			(bl.getYPosition() < (yPosition)) ){ // - width
+				
+		bl.setySpeed(-bl.getYspeed());	 // 			xPosition += xSpeed;	
+		//bl.setyPosition(bl.getYspeed());	 
+		}
+	}
 }

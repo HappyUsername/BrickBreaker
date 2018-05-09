@@ -634,7 +634,7 @@ public class GameArena implements MouseListener
 	 * Pause for a 1/50 of a second. 
 	 * This method causes your program to delay for 1/50th of a second. You'll find this useful if you're trying to animate your application.
 	 */
-	public void pause()
+	public void pause()// added after from exer6 samples
 	{
 		try { Thread.sleep(18); }
 		catch (Exception e) {};
@@ -651,12 +651,10 @@ public class GameArena implements MouseListener
 
 //----------------------------//
 
-		public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered(MouseEvent e){}
     public void mouseExited(MouseEvent e){}
-	//public void mouseMoved(MouseEvent e){}
-	//public void mouseDragged(MouseEvent e){}
     public void mouseClicked(MouseEvent e) {	
 		mouseCordinateX = (double)e.getX();
 		mouseCordinateY = (double)e.getY();
