@@ -144,9 +144,9 @@ public class Ball{
 		}
 
 		if (itterations == 0 ){
-				headTowards(xM, yM);
-			    //ySpeed = -ySpeed;
-			 //   yPosition += ySpeed;
+			//	headTowards(xM, yM);
+			 // ySpeed = -ySpeed;
+			    yPosition += ySpeed;
 			ySpeed = -ySpeed;
 			
 			move();

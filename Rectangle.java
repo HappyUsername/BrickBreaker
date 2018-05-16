@@ -194,6 +194,44 @@ public class Rectangle
 			System.out.println("Hitting");
 		}
 		*/
+		double bx = bl.getXPosition();
+		double by = bl.getYPosition();
+		double br = (bl.getSize())/2; 
+		
+		if(by + br > yPosition + (height/2) &&
+		by - br < yPosition + (height/2) &&
+		bx - br < xPosition + (width/2) &&
+		bx + br > xPosition - (width/2)
+		){
+			
+			//	 System.out.println("Hitting bottom");
+		}
+		if ( by + br > yPosition - (height/2) &&
+		by - br < yPosition - (height/2) &&
+		bx - br > xPosition - (width/2) &&
+		bx + br < xPosition + (width/2)
+		
+		){		
+			 System.out.println("Hitting top");
+		}
+		if (bx + br > xPosition + (width/2) &&
+		bx - br < xPosition + (width/2) &&
+		by - br > yPosition - (height/2) &&
+		by + br < yPosition + (height/2)
+		){
+			 System.out.println("Hitting RIGHT");
+		}
+		if (bx + br > xPosition - (width/2) && // doesnt work
+		bx - br < xPosition - (width/2) &&
+		by - br < yPosition + (height/2) &&
+		by + br > yPosition - (height/2)
+		){
+			 System.out.println("Hitting Left");
+		}
+		
+		
+		
+		
 		
 		
 		if( (bl.getXPosition() >= xPosition) && //+height
@@ -202,16 +240,16 @@ public class Rectangle
 			 (forDelete == false)
 			){ // - width
 				System.out.println("Hitting bottom");
-		bl.setySpeed(-bl.getYspeed());	 // 			xPosition += xSpeed;	
+	// 			xPosition += xSpeed;	
 		//bl.setyPosition(bl.getYspeed());	 
 		}
-		else if ( (bl.getXPosition() >= xPosition) &&  // hit the top 
-			(bl.getYPosition() < yPosition) &&
-			(bl.getXPosition() >= xPosition - width) &&
-			 (forDelete == false)){
+		/*else if (  // hit the top (bl.getXPosition() >= xPosition + (height/2)) && 
+			(bl.getXPosition() <= xPosition ) 
+			){ //(bl.getXPosition() > xPosition- (width/2))
 				 System.out.println("Hitting top \n");
+				 	bl.setxSpeed(-bl.getXspeed());	 
 			 }
-			 
+			 */
 		else if((bl.getYPosition() >= yPosition) && // hit the left
 			(bl.getYPosition() <= yPosition + height) &&
 			(bl.getXPosition() == xPosition) &&

@@ -10,15 +10,15 @@ public class Main{
 		Arrow arr = new Arrow(250,500, 250, 450, 5,"#00FF00",g);
 	    int cycle = 1;
 	    boolean ballsInitialized = false;
-		double a = 2.1;
-		double b = 1.1;
+		double a = 2;
+		double b = 1;
 		double yCord = 0;
-		Rectangle rect = new Rectangle(245, 301, 35, 25, 2);
+		Rectangle rect = new Rectangle(265, 321, 85, 55, 2);
 		g.addRectangle(rect);
 
 		for(int i = 0; i<balls.length;i++){
 			
-			balls[i] = new Ball(250,495 - yCord);
+			balls[i] = new Ball(250,495);
 			balls[i].setxSpeed(a);
 			balls[i].setySpeed(b);
 			g.addBall(balls[i]);
@@ -54,7 +54,7 @@ public class Main{
 							//balls[i].headTowards(point.getX(), point.getY());
 							balls[i].bounce(500,500, point.getX(), point.getY());
 							//System.out.println("Bounce before?");
-							//rect.bounceRect(balls[i]);
+							rect.bounceRect(balls[i]);
 						//	System.out.println("Bounce here?");
 							
 						}
