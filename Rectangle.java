@@ -1,3 +1,4 @@
+import java.awt.*;
 /**
  * Models a simple, solid rectangle. 
  * This class represents a Rectangle object. When combined with the GameArena class,
@@ -13,7 +14,7 @@ public class Rectangle
     private double width;                // The width of this Rectangle
     private double height;               // The height of this Rectangle
     private static String colour;               // The colour of this Rectangle
-    private boolean forDelete = false; 
+    private boolean forDelete = false;  // rename to destroyed
     private int score; // the score of the brick
 
 
@@ -188,11 +189,41 @@ public class Rectangle
     }    
     
     public void bounceRect(Ball bl){
-		if( (bl.getXPosition() < (xPosition +height)) && //+height
-			(bl.getYPosition() < (yPosition)) ){ // - width
-				
+	/*	
+		if(this.intersects(bl) == true){
+			System.out.println("Hitting");
+		}
+		*/
+		
+		
+		if( (bl.getXPosition() >= xPosition) && //+height
+			(bl.getYPosition() == yPosition + height) &&
+			(bl.getXPosition() <= xPosition + width + 1) &&
+			 (forDelete == false)
+			){ // - width
+				System.out.println("Hitting bottom");
 		bl.setySpeed(-bl.getYspeed());	 // 			xPosition += xSpeed;	
 		//bl.setyPosition(bl.getYspeed());	 
+		}
+		else if ( (bl.getXPosition() >= xPosition) &&  // hit the top 
+			(bl.getYPosition() < yPosition) &&
+			(bl.getXPosition() >= xPosition - width) &&
+			 (forDelete == false)){
+				 System.out.println("Hitting top \n");
+			 }
+			 
+		else if((bl.getYPosition() >= yPosition) && // hit the left
+			(bl.getYPosition() <= yPosition + height) &&
+			(bl.getXPosition() == xPosition) &&
+			 (forDelete == false)){
+			System.out.println("Hitting left \n");
+		}
+		
+		else if((bl.getYPosition() >= yPosition) && // hit the right
+			(bl.getYPosition() >= yPosition + height) &&
+			(bl.getXPosition() == xPosition + width) &&
+			 (forDelete == false)){
+			System.out.println("Hitting right \n");
 		}
 	}
 }

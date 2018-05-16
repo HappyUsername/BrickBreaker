@@ -13,7 +13,7 @@ public class Main{
 		double a = 2.1;
 		double b = 1.1;
 		double yCord = 0;
-		Rectangle rect = new Rectangle(245, 301, 35, 25, 10);
+		Rectangle rect = new Rectangle(245, 301, 35, 25, 2);
 		g.addRectangle(rect);
 
 		for(int i = 0; i<balls.length;i++){
@@ -24,36 +24,38 @@ public class Main{
 			g.addBall(balls[i]);
 			//a = a - 0.1;
 			//b = b - 0.1;
-			yCord--;
+			//yCord--;
 		}
 		g.update();
 		System.out.println("rect x cordinate" + rect.getXPosition());
+		
 		boolean condition = true; // if it is set to FALSE the level/game ends.
+		
+		
 		while(condition){	
 			Point point = MouseInfo.getPointerInfo().getLocation();
 			arr.setEnd(point.getX(), point.getY());
 			
 				if(g.MousePressedd == true)
             		for(int i = 0; i<balls.length;i++){
-						//balls[i].bounce(500,500);
-						//g.pause();
-						//g.update();
-						//TimeUnit.MILLISECONDS.sleep(23);
-						//Thread.sleep(23);
 						if(!ballsInitialized){
 							while(cycle < balls.length+1 ){
 								for(int m = 0; m < cycle; m++)
-									for(int z=0; z < 4; z++)
-										balls[cycle-1].bounce(500,500);
+									for(int z=0; z < 6; z++)
+										//balls[cycle-1].headTowards(point.getX(), point.getY());
+										balls[cycle-1].bounce(500,500, point.getX(), point.getY());
 										g.update();
-								cycle++;
+										cycle++;
 							}
 							ballsInitialized=true;
 						}
 						else
-						{
-							balls[i].bounce(500,500);
-							rect.bounceRect(balls[i]);
+						{ //System.out.println("point.getX() = " + point.getX());
+							//balls[i].headTowards(point.getX(), point.getY());
+							balls[i].bounce(500,500, point.getX(), point.getY());
+							//System.out.println("Bounce before?");
+							//rect.bounceRect(balls[i]);
+						//	System.out.println("Bounce here?");
 							
 						}
 						if(balls[i].getDeleteAble() == true ){ 
@@ -69,7 +71,7 @@ public class Main{
 				g.update();
 			
 
-			}//while ends here 
+		  }//while ends here 
 
 
 

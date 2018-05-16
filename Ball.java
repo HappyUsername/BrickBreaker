@@ -1,7 +1,8 @@
+import java.lang.Math.*;
 /**
 *Class that represents the balls on the GameArena
 *Brick Breaker Game
-*
+* //https://stackoverflow.com/questions/18704999/how-to-fix-circle-and-rectangle-overlap-in-collision-response/18790389#18790389
 *@author Boris Boychev
 */
 public class Ball{
@@ -15,7 +16,8 @@ public class Ball{
 	private double ySpeed; //used for moving the ball on the y cordinate 
 	private int itterations = 0;// dont forget me!
 	private boolean deleteAble = false; // if thi is set to true, the ball shoud be deleted by GameArena
-
+	private boolean started = false;  
+	
 	/**
 	 * Returns current position of this Ball.
 	 * @return X coordinate of this Ball within the GameArena
@@ -131,20 +133,24 @@ public class Ball{
 		yPosition += ySpeed;
 	}
 	
-	public void bounce(double maxX, double maxY){
+	public void bounce(double maxX, double maxY, double xM, double yM){
 		
-		move();
-
+		
+			move();
+	
 		if (xPosition > maxX || xPosition < 0){
 			xSpeed = -xSpeed;
 			xPosition += xSpeed;
 		}
 
-		//if ( (yPosition > maxY || yPosition < 0) && itterations == 0){
 		if (itterations == 0 ){
-			    ySpeed = -ySpeed;
-			    yPosition += ySpeed;
-		 
+				headTowards(xM, yM);
+			    //ySpeed = -ySpeed;
+			 //   yPosition += ySpeed;
+			ySpeed = -ySpeed;
+			
+			move();
+
 		}
 		if (yPosition < 0){
 			ySpeed = -ySpeed;
@@ -159,6 +165,35 @@ public class Ball{
 		}
 		itterations++;
 	}
+	
+	/*public void headTowards(double a, double b){
+		int c = 0;
+		double vx = a - xPosition;
+		double vy = b - yPosition;
+      double dist = Math.sqrt(vx*vx + vy*vy);
+      if (dist > 0) {
+         double speed = Math.sqrt(xSpeed*xSpeed + ySpeed*ySpeed);
+         xSpeed = vx / dist * speed;
+         ySpeed = vy / dist * speed;
+         c++;
+         if(c == 1)	return;
+      }
+		//bounce(500, 500);
+	//if(c == 2)	return;
+		
+	}*/
+	public void headTowards(double xM, double yM){
 
+		if(started == false){
+		double tang = Math.tan(yM/xM);
+		double oldxSpeed = xSpeed;
+		double oldySpeed = ySpeed;
+	
+		ySpeed = Math.cos(tang)*oldySpeed;
+		System.out.println("yspeed = "+ySpeed);
+		xSpeed = Math.sin(tang)*oldxSpeed ;
+		}
+		started = true ;
+	}
 
 }
