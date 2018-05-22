@@ -218,7 +218,7 @@ public class Arrow{
 	
 
     }
-    public void removeArrow(GameArena g){
+    public void removeArrow(GameArena g){// delete
         for (int i = 0 ;i < line.length ; i++)
         g.removeLine(line[i]);
     }

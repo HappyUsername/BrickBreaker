@@ -650,14 +650,17 @@ public class GameArena implements MouseListener
     }
 
 //----------------------------//
-    public void initBalls(Ball ballArray[], int n, double xCord, double yCord){
-       for(int i = 0 ; i<n; i++){
+
+	/**
+	 * This method is used to initialise a whole array
+	 * of type Ball and put it on the current GameArea.
+	 * 
+	 */
+    public void initBalls(Ball ballArray[], double xCord, double yCord){
+       for(int i = 0 ; i<ballArray.length; i++){
            ballArray[i] = new Ball(xCord, yCord);
            addBall(ballArray[i]);
        }
-
-
-           // System.out.println("bas");
     }
 
     /**
@@ -677,19 +680,58 @@ public class GameArena implements MouseListener
         else return  false;
 
     }
-
-
-    public boolean isGameOver(Rectangle rectArray[]){ // doesnt work ????
+    
+	/**
+	 * This method determines if a Brick's cordinates are below the screen.
+	 * It is used to so we can find out when the game is over.
+	 * @param rectArray[]
+	 * @return true if game is over
+	 * @return false otherwise
+	 */
+    public boolean isGameOver(Rectangle rectArray[]){
 
         for(int i = 0; i < rectArray.length; i++){
-
-            if( (rectArray[i].getXPosition() > arenaWidth ) &&
-                    (rectArray[i].getYPosition() > arenaHeight ))
-                return true;
+			
+              if( (rectArray[i].getYPosition() + (rectArray[i].getHeight() /2))
+				>= arenaHeight){
+					
+						System.out.println("Game Over.");
+						Text tOver= new Text("GAME OVER !",170, 245, 50 ,"RED");
+						this.addText(tOver);
+						return true;
+			}
         }
 
         return false;
     }
+    
+    /**
+	 * This method determines if a Brick's scores are equal to 0.
+	 * It is used to so we can find out when the game is won.
+	 * @param rectArray[]
+	 * @return true if game is won
+	 * @return false otherwise
+	 */
+    public boolean isGameWon(Rectangle rectArray[]){
+		int count = 0;
+		
+		for(int i = 0; i < rectArray.length; i++){
+			
+			if(rectArray[i].getForDelete() == true)count++;
+			
+
+			
+		}
+			if(count == rectArray.length){
+				System.out.println("You win !");
+				Text tWin= new Text("YOU WIN! ",170, 245, 50 ,"GREEN");
+				this.addText(tWin);
+				return true;
+			}
+		
+			else return false;
+	
+	}
 
 
 

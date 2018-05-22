@@ -1,4 +1,3 @@
-import java.awt.*;
 /**
  * Models a simple, solid rectangle. 
  * This class represents a Rectangle object. When combined with the GameArena class,
@@ -14,7 +13,7 @@ public class Rectangle
     private double width;                // The width of this Rectangle
     private double height;               // The height of this Rectangle
     private static String colour;               // The colour of this Rectangle
-    private boolean forDelete = false;  // rename to destroyed
+    private boolean forDelete = false;  // use it flag for removing from the screen
     private int score; // the score of the brick
 
 
@@ -146,7 +145,7 @@ public class Rectangle
     }
     /**
     *Changes the value of the score of the current Rectangle by -1.
-    * Used for when the ball hits the rectangle. 
+    * Used when the ball hits the rectangle. 
     */
     public void scoreMinus(){
 		score--;
@@ -166,7 +165,10 @@ public class Rectangle
 
 	    else return false;
     }
-
+    
+	/**
+	 * @return forDelete
+	 */
     public boolean getForDelete(){
 
         return forDelete;
@@ -191,18 +193,19 @@ public class Rectangle
         height = h;
 		score = s;
         colour = "#C0C0C0";
+        
+        //textScore = new Text(Integer.toString(score), xPosition, yPosition, 10, "#FF0000");
+        
     }
 
     /**
-     *
+     *This method is used to bounce a Ball of the current Rectangle.
+     * When any of the sides it touched it changes the ySpeed or xSpeed
+     * of the Ball depending on which side is hit.
      * @param bl of type Ball
      */
     public void bounceRect(Ball bl){
-	/*	
-		if(this.intersects(bl) == true){
-			System.out.println("Hitting");
-		}
-		*/
+
 		double bx = bl.getXPosition();
 		double by = bl.getYPosition();
 		double br = (bl.getSize())/2;
@@ -211,51 +214,58 @@ public class Rectangle
         if (bx + br > xPosition - (width/2) &&
                 bx - br < xPosition - (width/2) &&
                 by - br < yPosition + (height/2) &&
-                by + br > yPosition - (height/2)
-                ){
-            bl.setxSpeed(- bl.getXspeed());
-            scoreMinus();
-            System.out.println("Hitting LEFTTTT");
+                by + br > yPosition - (height/2))
+        {
+					bl.setxSpeed(- bl.getXspeed());
+					scoreMinus();
+					System.out.println("Hitting LEFTTTT");
         }
 
 		else if(by + br > yPosition + (height/2) &&
             by - br < yPosition + (height/2) &&
             bx - br < xPosition + (width/2) &&
-            bx + br > xPosition - (width/2)
-		){
-			bl.setySpeed(- bl.getYspeed());
-            scoreMinus();
-			System.out.println("Hitting bottom");
+            bx + br > xPosition - (width/2))
+		{
+				bl.setySpeed(- bl.getYspeed());
+				scoreMinus();
+				System.out.println("Hitting bottom");
 		}
 		else if ( by + br > yPosition - (height/2) &&
 		by - br < yPosition - (height/2) &&
 		bx - br > xPosition - (width/2) &&
-		bx + br < xPosition + (width/2)
-		
-		){		
-            System.out.println("Hitting top");
-            bl.setySpeed(- bl.getYspeed());
-            scoreMinus();
+		bx + br < xPosition + (width/2))
+		{		
+				System.out.println("Hitting top");
+				bl.setySpeed(- bl.getYspeed());
+				scoreMinus();
 		}
          else if (bx + br > xPosition + (width/2) &&
             bx - br < xPosition + (width/2) &&
             by - br < yPosition + (height/2) &&
-            by + br > yPosition - (height/2)
-            ){
-                bl.setxSpeed(-bl.getXspeed());
-                System.out.println("Hitting RIGHT");
-                scoreMinus();
+            by + br > yPosition - (height/2))
+		{
+				bl.setxSpeed(-bl.getXspeed());
+				System.out.println("Hitting RIGHT");
+				scoreMinus();
 		}
-
-
 
 	}
 
     /**
-     * Used to
+     * This method adds the heigh to the y-cordiante of the current Rectangle,
+     * thus pushing it down on the screen.
+     * It is used after every round of the game.
+     * @param t used to display the score. It is passed so that
+     * it can get moved down with the brick.
      */
-	public  void pushDown(){
-
-        yPosition += height;
+	public  void pushDown(Text t){
+		if(yPosition <0){   
+			yPosition = yPosition + (2*height);
+			t.setYPosition(t.getYPosition() + (2*height));
+		}
+	else{
+			yPosition += height;
+			t.setYPosition(t.getYPosition() + height);
+        }
     }
 }

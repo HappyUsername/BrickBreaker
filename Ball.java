@@ -2,21 +2,21 @@ import java.lang.Math.*;
 /**
 *Class that represents the balls on the GameArena
 *Brick Breaker Game
-* //https://stackoverflow.com/questions/18704999/how-to-fix-circle-and-rectangle-overlap-in-collision-response/18790389#18790389
-*@author Boris Boychev
+*
+*@author Joe Finney
 */
 public class Ball{
 	
 	private double xPosition;
 	private double yPosition;
-	private static double size;// static??
-	private static String colour;//static??
+	private static double size;
+	private static String colour;
 	
 	private double xSpeed; //used for moving the ball on the X cordinate 
 	private double ySpeed; //used for moving the ball on the y cordinate 
-	private int itterations = 0;// dont forget me!
-	private boolean deleteAble = false; // if thi is set to true, the ball shoud be deleted by GameArena
-	private boolean started = false;  
+	private int itterations = 0;// used in the bounce() method
+	private boolean deleteAble = false; // if thi is set to true, the ball shoud be removed by GameArena
+	private boolean started = false;  // used in the headTowards() method
 	
 	/**
 	 * Returns current position of this Ball.
@@ -84,16 +84,6 @@ public class Ball{
 	{
 		ySpeed = speed;
 	}
-	/**
-	* When the ball goes out of the game
-	* this method marks it as flaged
-	* so it can be deleted by GameArena
-	*/
-	/*public boolean flagDelete(){//doesnt work
-		if(yPosition > 500)
-		return true;
-		else return false;
-	}*/
 	
 	/**
 	 * Returns current x speed of this Ball.
@@ -122,10 +112,17 @@ public class Ball{
 
 /* ------------------------------------------------ */
 
+	/**
+	 * Constructor. Creates a new instanse of Ball.
+	 * 
+	 * @param x x-cordinate of the Ball.
+	 * @param y y-cordinate of the Ball.
+	 * 
+	 */
 	public Ball(double x, double y){
 		xPosition = x;
 		yPosition = y;
-		xSpeed = 0.5;
+		xSpeed = 0;
 		ySpeed = 3 ;
 		
 		size = 5;
@@ -135,7 +132,6 @@ public class Ball{
 
 	/**
 	*This method is used for moving the Balls.
-	*
 	*/
 	public void move(){
 
@@ -143,11 +139,12 @@ public class Ball{
 		yPosition += ySpeed;
 	}
 
-
+	/**
+	 * 
+	 * 
+	 */
 	public void bounce(double maxX, double maxY, double xM, double yM){
-		//, double xM, double yM)
-
-			move();
+		move();
 
 		if (xPosition > maxX || xPosition < 0){
 			xSpeed = -xSpeed;
@@ -156,11 +153,10 @@ public class Ball{
 
 		if (itterations == 0 ){
 				//headTowards(xM, yM);
-			 // ySpeed = -ySpeed;
 			    yPosition += ySpeed;
 				ySpeed = -ySpeed;
 			
-			move();
+				move();
 
 		}
 		if (yPosition < 0){
@@ -195,6 +191,12 @@ public class Ball{
 	//if(c == 2)	return;
 		
 	}*/
+	
+	/**
+	 * This method is used to launch the ball to a certain direction.
+	 * @param xM x-cordinate of the mouse/end of arrow.
+	 * @param yM y-cordiante of the mouse/end of arrow. 
+	 */
 	public void headTowards(double xM, double yM){
 
 		if(started == false){
