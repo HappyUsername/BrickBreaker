@@ -214,16 +214,14 @@ public class Arrow{
         line[2].setStart(ax2, ay2);
         line[2].setEnd(xe, ye);
 
-	line[0].setEnd(xe,ye);// added
+	    line[0].setEnd(xe,ye);// added
 	
 
     }
-	// adding mouse listener so it can move
-	// here??
-	void move(GameArena g){
-	
-
-	}
+    public void removeArrow(GameArena g){
+        for (int i = 0 ;i < line.length ; i++)
+        g.removeLine(line[i]);
+    }
 
 
 }

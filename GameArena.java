@@ -650,6 +650,48 @@ public class GameArena implements MouseListener
     }
 
 //----------------------------//
+    public void initBalls(Ball ballArray[], int n, double xCord, double yCord){
+       for(int i = 0 ; i<n; i++){
+           ballArray[i] = new Ball(xCord, yCord);
+           addBall(ballArray[i]);
+       }
+
+
+           // System.out.println("bas");
+    }
+
+    /**
+     *This method determines if a whole array of Ball
+     * is out of the GameArena. Use so we can determine when
+     * the current level ends and a new one continues.
+     * @param ballArray
+     * @param n is the length of the array
+     * @return true if all the balls are out of the GameArena
+     */
+    public boolean isOut(Ball ballArray[], int n){
+        int count = 0;
+        for(int i = 0; i < n ; i++) {
+            if (ballArray[i].getDeleteAble() == true) count++;
+        }
+        if(count == n) return true;
+        else return  false;
+
+    }
+
+
+    public boolean isGameOver(Rectangle rectArray[]){ // doesnt work ????
+
+        for(int i = 0; i < rectArray.length; i++){
+
+            if( (rectArray[i].getXPosition() > arenaWidth ) &&
+                    (rectArray[i].getYPosition() > arenaHeight ))
+                return true;
+        }
+
+        return false;
+    }
+
+
 
 	public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}

@@ -68,14 +68,18 @@ public class Ball{
 		return colour;
 	}
 	/**
-	 * 
-	 * write a description
+	 * Sets the xSpeed which is used to  move the ball.
+	 *@return the new xSpeed
 	 */
 	public void setxSpeed(double speed)
 	{
 		xSpeed = speed;
 	}
 
+    /**
+     * Sets the ySpeed which is used to  move the ball.
+     *@return the new ySpeed
+     */
 	public void setySpeed(double speed)
 	{
 		ySpeed = speed;
@@ -106,6 +110,12 @@ public class Ball{
 		return ySpeed;
 	}
 
+    /**
+     * Returns the current state of the Ball.
+     * Use for determining if the Ball should be deleted.
+     * @return deleteAble
+     */
+
 	public boolean getDeleteAble(){
 		return deleteAble;
 	}
@@ -115,8 +125,8 @@ public class Ball{
 	public Ball(double x, double y){
 		xPosition = x;
 		yPosition = y;
-		xSpeed = 0;
-		ySpeed = 0;
+		xSpeed = 0.5;
+		ySpeed = 3 ;
 		
 		size = 5;
 		colour = "#0000FF";
@@ -132,22 +142,23 @@ public class Ball{
 		xPosition += xSpeed;
 		yPosition += ySpeed;
 	}
-	
+
+
 	public void bounce(double maxX, double maxY, double xM, double yM){
-		
-		
+		//, double xM, double yM)
+
 			move();
-	
+
 		if (xPosition > maxX || xPosition < 0){
 			xSpeed = -xSpeed;
 			xPosition += xSpeed;
 		}
 
 		if (itterations == 0 ){
-			//	headTowards(xM, yM);
+				//headTowards(xM, yM);
 			 // ySpeed = -ySpeed;
 			    yPosition += ySpeed;
-			ySpeed = -ySpeed;
+				ySpeed = -ySpeed;
 			
 			move();
 
@@ -164,6 +175,8 @@ public class Ball{
 			
 		}
 		itterations++;
+
+
 	}
 	
 	/*public void headTowards(double a, double b){
@@ -195,5 +208,7 @@ public class Ball{
 		}
 		started = true ;
 	}
+
+
 
 }

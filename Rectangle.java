@@ -160,12 +160,17 @@ public class Rectangle
     * Used flagging the current rectangle so it can be deleted by GameArena.
     */
     public boolean forDelete(){
-	if(score == 0){
-	return true;
-	}
-	else return false;
+	    if(score == 0){
+	        return true;
+	    }
+
+	    else return false;
     }
 
+    public boolean getForDelete(){
+
+        return forDelete;
+    }
 
     /**
      *
@@ -186,8 +191,12 @@ public class Rectangle
         height = h;
 		score = s;
         colour = "#C0C0C0";
-    }    
-    
+    }
+
+    /**
+     *
+     * @param bl of type Ball
+     */
     public void bounceRect(Ball bl){
 	/*	
 		if(this.intersects(bl) == true){
@@ -196,72 +205,57 @@ public class Rectangle
 		*/
 		double bx = bl.getXPosition();
 		double by = bl.getYPosition();
-		double br = (bl.getSize())/2; 
-		
-		if(by + br > yPosition + (height/2) &&
-		by - br < yPosition + (height/2) &&
-		bx - br < xPosition + (width/2) &&
-		bx + br > xPosition - (width/2)
+		double br = (bl.getSize())/2;
+
+
+        if (bx + br > xPosition - (width/2) &&
+                bx - br < xPosition - (width/2) &&
+                by - br < yPosition + (height/2) &&
+                by + br > yPosition - (height/2)
+                ){
+            bl.setxSpeed(- bl.getXspeed());
+            scoreMinus();
+            System.out.println("Hitting LEFTTTT");
+        }
+
+		else if(by + br > yPosition + (height/2) &&
+            by - br < yPosition + (height/2) &&
+            bx - br < xPosition + (width/2) &&
+            bx + br > xPosition - (width/2)
 		){
-			
-			//	 System.out.println("Hitting bottom");
+			bl.setySpeed(- bl.getYspeed());
+            scoreMinus();
+			System.out.println("Hitting bottom");
 		}
-		if ( by + br > yPosition - (height/2) &&
+		else if ( by + br > yPosition - (height/2) &&
 		by - br < yPosition - (height/2) &&
 		bx - br > xPosition - (width/2) &&
 		bx + br < xPosition + (width/2)
 		
 		){		
-			 System.out.println("Hitting top");
+            System.out.println("Hitting top");
+            bl.setySpeed(- bl.getYspeed());
+            scoreMinus();
 		}
-		if (bx + br > xPosition + (width/2) &&
-		bx - br < xPosition + (width/2) &&
-		by - br > yPosition - (height/2) &&
-		by + br < yPosition + (height/2)
-		){
-			 System.out.println("Hitting RIGHT");
+         else if (bx + br > xPosition + (width/2) &&
+            bx - br < xPosition + (width/2) &&
+            by - br < yPosition + (height/2) &&
+            by + br > yPosition - (height/2)
+            ){
+                bl.setxSpeed(-bl.getXspeed());
+                System.out.println("Hitting RIGHT");
+                scoreMinus();
 		}
-		if (bx + br > xPosition - (width/2) && // doesnt work
-		bx - br < xPosition - (width/2) &&
-		by - br < yPosition + (height/2) &&
-		by + br > yPosition - (height/2)
-		){
-			 System.out.println("Hitting Left");
-		}
-		
-		
-		
-		
-		
-		
-		if( (bl.getXPosition() >= xPosition) && //+height
-			(bl.getYPosition() == yPosition + height) &&
-			(bl.getXPosition() <= xPosition + width + 1) &&
-			 (forDelete == false)
-			){ // - width
-				System.out.println("Hitting bottom");
-	// 			xPosition += xSpeed;	
-		//bl.setyPosition(bl.getYspeed());	 
-		}
-		/*else if (  // hit the top (bl.getXPosition() >= xPosition + (height/2)) && 
-			(bl.getXPosition() <= xPosition ) 
-			){ //(bl.getXPosition() > xPosition- (width/2))
-				 System.out.println("Hitting top \n");
-				 	bl.setxSpeed(-bl.getXspeed());	 
-			 }
-			 */
-		else if((bl.getYPosition() >= yPosition) && // hit the left
-			(bl.getYPosition() <= yPosition + height) &&
-			(bl.getXPosition() == xPosition) &&
-			 (forDelete == false)){
-			System.out.println("Hitting left \n");
-		}
-		
-		else if((bl.getYPosition() >= yPosition) && // hit the right
-			(bl.getYPosition() >= yPosition + height) &&
-			(bl.getXPosition() == xPosition + width) &&
-			 (forDelete == false)){
-			System.out.println("Hitting right \n");
-		}
+
+
+
 	}
+
+    /**
+     * Used to
+     */
+	public  void pushDown(){
+
+        yPosition += height;
+    }
 }
